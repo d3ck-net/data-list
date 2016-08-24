@@ -1,0 +1,67 @@
+<template name="dataList">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="prevPage glyphicon glyphicon-arrow-left"></div>
+                <div class="pagesIndex">{{page}}/{{numPages}}</div>
+                <div class="nextPage glyphicon glyphicon-arrow-right"></div>
+                <div class="table-responsive">
+                    {{>filterBar name=name schema=schema callbacks=callbacks}}
+
+                    <div>count:{{count}}</div>
+                    <table cellpadding="1" cellspacing="1" class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            {{#each schema}}
+                                <th>{{label}}</th>
+                            {{/each}}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each data}}
+                            <tr>
+                                {{#each schema}}
+                                    <td>
+                                        {{deReference id}}
+                                    </td>
+                                {{/each}}
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addDialog"> Add</button>
+
+                <div class="modal fade" id="addDialog" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title">Modal title</h4>
+                                <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </small>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="m-t-none">Lorem Ipsum is simply</h4>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy text ever.</p>
+
+                                {{>quickForm collection=collection id="insertBookForm" type="insert"}}
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-accent">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="dataListAdd">
+    {{>quickForm collection=collection id="insertBookForm" type="insert"}}
+</template>
