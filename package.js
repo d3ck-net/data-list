@@ -15,7 +15,7 @@ Package.onUse(function (api) {
     api.use('templating', 'client');
     api.use('blaze-html-templates');
     api.use('less');
-    api.use('msgfmt:core');
+    // api.use('msgfmt:core');
     api.use('ecmascript');
     api.use('meteortypescript:compiler');
     api.use('mongo');
