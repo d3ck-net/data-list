@@ -2,7 +2,7 @@ Package.describe({
     name: 'dasdeck:data-list',
     version: '0.0.1',
     // Brief, one-line summary of the package.
-    summary: 'create simple filterable list from tables',
+    summary: 'create simple filterable tables from collections',
     // URL to the Git repository containing the source code for this package.
     git: '',
     // By default, Meteor will default to using README.md for documentation.
@@ -17,17 +17,15 @@ Package.onUse(function (api) {
     api.use('less');
     // api.use('msgfmt:core');
     api.use('ecmascript');
-    api.use('meteortypescript:compiler');
     api.use('mongo');
     api.use('dasdeck:data-filters');
-    // api.use('ui');
+    api.use('aldeed:autoform');
+    api.use('aldeed:collection2');
+    api.use('dasdeck:data-edit');
+
 
     api.addFiles('client/tableView.html', 'client');
-    // api.addFiles('client/style.less', 'client');
-    // api.addFiles('Filter.ts', 'client');
-    // api.addFiles('FilterConfig.ts', 'client');
-    // api.addFiles('server/startup.js', 'server');
-    // api.addFiles('lib/startup.js');
+    api.addFiles('client/style.less', 'client');
 
 
     api.addFiles('client/tableView.js', 'client');
