@@ -3,16 +3,21 @@
         <div class="row">
             <div class="col-xs-12">
 
-                <div class="paging">
-                    <div class="prevPage glyphicon glyphicon-arrow-left"></div>
-                    <div class="pagesIndex">{{page}}/{{numPages}}</div>
-                    <div class="nextPage glyphicon glyphicon-arrow-right"></div>
+                {{#if paging}}
+                    <div class="paging">
+                        <div class="prevPage glyphicon glyphicon-arrow-left"></div>
+                        <div class="pagesIndex">{{page}}/{{numPages}}</div>
+                        <div class="nextPage glyphicon glyphicon-arrow-right"></div>
 
-                    <div>count:{{count}}</div>
-                </div>
+                        <div>count:{{count}}</div>
+                    </div>
+                {{/if}}
+
+                {{#if searchable}}
+                    {{>filterBar name=name schema=searchSchema callbacks=callbacks}}
+                {{/if}}
 
                 <div class="table-responsive">
-                    {{>filterBar name=name schema=searchSchema callbacks=callbacks}}
 
                     <table cellpadding="1" cellspacing="1" class="table table-hover table-striped">
                         <thead>
@@ -60,34 +65,35 @@
 
     <div class="modal fade" id="addDialog" tabindex="-1" role="dialog" aria-hidden="true">
         <!--<form class="form" name="add">-->
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title">Modal title</h4>
-                        <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        </small>
-                    </div>
-                    <div class="modal-body">
-                        <h4 class="m-t-none">Lorem Ipsum is simply</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                            Ipsum has been the industry's standard dummy text ever.</p>
-                        {{#autoForm collection=collection id=collection._name type="normal" validation="keyup"}}
-                            <fieldset>
-                                <legend>Create {{collection._name}}</legend>
-                                {{#each schema}}
-                                    {{> afQuickField name=id}}
-                                {{/each}}
-                            </fieldset>
-                            <!--<button type="submit" class="btn btn-primary">Insert</button>-->
-                        {{/autoForm}}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Modal title</h4>
+                    <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </small>
+                </div>
+                <div class="modal-body">
+                    <h4 class="m-t-none">Lorem Ipsum is simply</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                        Ipsum has been the industry's standard dummy text ever.</p>
+                    {{#autoForm collection=collection id=collection._name type="normal" validation="keyup"}}
+                        <fieldset>
+                            <legend>Create {{collection._name}}</legend>
+                            {{#each schema}}
+                                {{> afQuickField name=id}}
+                            {{/each}}
+                        </fieldset>
+                        <!--<button type="submit" class="btn btn-primary">Insert</button>-->
+                    {{/autoForm}}
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <input type="button" name="submit" class="btn btn-accent insert" form="{{collection._name}}"  value="Save changes"/>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="button" name="submit" class="btn btn-accent insert" form="{{collection._name}}"
+                           value="Save changes"/>
                 </div>
             </div>
+        </div>
         <!--</form>-->
     </div>
 </template>

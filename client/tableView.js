@@ -89,19 +89,16 @@ Template.dataList.helpers({
         var collection = Template.instance().data.collection;
         return collection.getSchema('search');
     },
-    
-    _id:function(){
-        
-        if(this._id instanceof Mongo.ObjectID)
-        {
-            return this._id._str + "/oid";
+
+    _id: function () {
+
+        if (this.getId() instanceof Mongo.ObjectID) {
+            return this.getId()._str + "/oid";
         }
-        else 
-        {
-            return this._id;
+        else {
+            return this.getId();
         }
     },
-
     schema: function () {
         var self = Template.instance().data;
         return self.collection.getSchema('table');
@@ -115,6 +112,9 @@ Template.dataList.helpers({
     limit: function () {
         return this.limit.get();
     },
+    paging: function () {
+        return this.numPages.get() > 1
+    },
     numPages: function () {
         return this.numPages.get();
     },
@@ -127,7 +127,7 @@ Template.dataList.helpers({
 
 Template.dataList.events({
     'dblclick .pagesIndex': function () {
-        var page = prompt(mf('table.gotopage', {}, 'got to page:'), this.page.get() + 1);
+        var page = prompt('go to page:', this.page.get() + 1);
 
         var pageInt = parseInt(page);
         if (!isNaN(pageInt)) {
@@ -223,10 +223,10 @@ Template.dataListAdd.events({
             collection.insert(data, function (error, id) {
                 if (!error) {
                     modal.modal('hide');
-                    toastr.success("item added succsessfully");
+                    // toastr.success("item added succsessfully");
                 }
                 else {
-                    toastr.error("could not save data");
+                    // toastr.error("could not save data");
                 }
             });
         }
